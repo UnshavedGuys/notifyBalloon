@@ -9,7 +9,8 @@ namespace notifyBalloon
     public partial class Form1 : Form
     {
         NotifyIcon notifyIcon;
-        string iconPath = "C:\\Share\\RUS.ico";
+        string iconPath = "Resources\\ucb.ico";
+        //string iconPath = Properties.Resources.ucb;
         string HeaderText;
         string MessageText;
         private EventLog eventLog1;
@@ -49,7 +50,7 @@ namespace notifyBalloon
                 Icon = new Icon(iconPath),
                 ContextMenu = contextmenu1,
                 Visible = true,
-                Text = "Service Desk App"
+                Text = "ServiceDesk App"
             };
             eventLog1.WriteEntry("ServiceDesk App started", EventLogEntryType.Information, 1);
             // Set up a timer to trigger every time.  
@@ -73,7 +74,7 @@ namespace notifyBalloon
                 {
                     //Console.WriteLine(myLogEntry.Source + " was the source of last event of id " + myLogEntry.InstanceId);
                     Console.WriteLine(myLogEntry.Message);
-                    MessageText = "Sorry, but you have to restart your computer immediatly" + myLogEntry.TimeWritten;
+                    MessageText = "Нам очень жаль, но ваш компьютер требует перезагрузки." + myLogEntry.TimeWritten;
                     notifyIcon.ShowBalloonTip(10000, HeaderText, MessageText, ToolTipIcon.None);
                     return;
                 }
